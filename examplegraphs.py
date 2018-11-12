@@ -1,0 +1,31 @@
+import networkx as nx
+import matplotlib.pyplot as plt
+import numpy as np
+
+def create_fig(titleString, inputGraph):
+	plt.figure()
+	fig = plt.gcf()
+	fig.canvas.set_window_title(titleString)
+	nx.draw(inputGraph, with_labels=True, font_weight='bold')
+
+def create_subplots(titleString, subplotTitleList, graphList):
+	plt.figure()
+	nr = int(np.ceil(np.sqrt(len(subplotTitleList))))
+	fig, subplots = plt.subplots(nr, nr, num=1)
+	fig.canvas.set_window_title(titleString)
+	for i, title in enumerate(subplotTitleList):
+		ix = np.unravel_index(i, subplots.shape)
+		plt.sca(subplots[ix])
+		nx.draw(graphList[i], with_labels=True)
+		subplots[ix].set_title(title)
+
+petersen = nx.petersen_graph()
+tutte = nx.tutte_graph()
+maze = nx.sedgewick_maze_graph()
+tet = nx.tetrahedral_graph()
+
+graphs = [petersen, tutte, maze, tet]
+graphtitles = ['petersen', 'tutte', 'maze', 'tet']
+create_subplots('types of standard graphs', graphtitles, graphs)
+
+plt.show()
