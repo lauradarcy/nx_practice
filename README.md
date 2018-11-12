@@ -1,6 +1,6 @@
 # NetworkX Practice
 
-also practice init git repo from command line
+also practice init git repo from command line:
 
 ```bash
 vlan1480:~ laura$ cd documents/phd/repos
@@ -15,7 +15,7 @@ vlan1480:nx_practice laura$
 
 
 
-Create figure function
+create figure function:
 
 ```python
 def create_fig(TitleString, inputGraph):
@@ -34,9 +34,8 @@ for subplots:
 
 ```python
 def create_subplots(titleString, subplotTitleList, graphList):
-	plt.figure()
 	nr = int(np.ceil(np.sqrt(len(subplotTitleList))))
-	fig, subplots = plt.subplots(nr, nr, num=1)
+	fig, subplots = plt.subplots(nr, nr)
 	fig.canvas.set_window_title(titleString)
 	for i, title in enumerate(subplotTitleList):
 		ix = np.unravel_index(i, subplots.shape)
